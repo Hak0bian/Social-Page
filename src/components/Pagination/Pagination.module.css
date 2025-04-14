@@ -1,0 +1,38 @@
+.buttonsDiv{
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid gray;
+    gap: 8px;
+    padding: 16px 0;
+
+    button{
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        color: #444;
+        background-color: wheat;
+        border: 1px solid gray;
+        box-shadow: 0 0 4px gray;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover{
+            background-color: burlywood;
+        }
+    }
+
+    .arrow{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+}
+
+
+
+.activePage{
+    color: black !important;
+    background-color: burlywood !important;
+}
