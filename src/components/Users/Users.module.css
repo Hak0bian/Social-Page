@@ -1,0 +1,54 @@
+.usersContainer{
+    max-width: 1140px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.userDivSkeleton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 8px;
+    border: 1px solid gray;
+    background-color: burlywood;
+    box-shadow: 0 0 8px #555;
+}
+
+.buttonsDivSkeleton{
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid gray;
+    gap: 8px;
+    padding: 16px 0;
+
+    button{
+        box-shadow: 0 0 4px gray;
+    }
+}
+
+.imgSkeleton{
+    width: 194px;
+    height: 190px;
+}
+
+.titleSkeleton{
+    width: 140px;
+    height: 24px;
+    margin: 8px;
+}
+
+.btnSkeleton{
+    width: 194px;
+    height: 36px;
+}
+
+.pageBtnSkeleton{
+    width: 40px;
+    height: 40px;
+}
