@@ -1,9 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { getUsersReducer } from "./reducers/getUsersReducer";
 import { thunk } from "redux-thunk";
+import { getUsersReducer, profileReducer, authReducer, editProfileReducer, changePhotoReducer } from "../store/reducers"
 
 const rootReducer = combineReducers({
-    users: getUsersReducer
+    users: getUsersReducer,
+    userProfile: profileReducer,
+    auth: authReducer,
+    editProfile: editProfileReducer,
+    photo: changePhotoReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+window.state = store

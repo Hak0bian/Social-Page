@@ -20,6 +20,8 @@
     box-shadow: 0 0 8px #555;
 
     h3{
+        text-align: center;
+        color: black;
         padding: 8px;
         word-break: break-all;
         white-space: wrap;

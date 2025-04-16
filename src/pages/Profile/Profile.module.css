@@ -1,0 +1,45 @@
+.myProfile{
+    margin: 20px;
+    display: flex;
+    gap: 40px;
+
+    img{
+        max-width: 280px;
+    }
+}
+
+.profileDiv{
+    border: 1px solid gray;
+    box-shadow: 0 0 4px gray;
+    padding: 20px;
+    background-color: burlywood;
+}
+
+.buttonsDiv{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.editBtn, 
+.uploadBtn,
+.logOutBtn{
+    width: 100px;
+    height: 36px;
+    font-size: 14px;
+    text-align: center;
+    background-color: wheat;
+    border: 1px solid black;
+    box-shadow: 0 0 4px gray;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover{
+        background-color: burlywood;
+    }
+}
+
+.uploadBtn{
+    align-content: center;
+}

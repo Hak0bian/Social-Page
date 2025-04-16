@@ -44,5 +44,6 @@ export const getUsersThunk = (page) => {
             dispatch(getUsersAC(res.data.items))
             dispatch(totalUsersCountAC(res.data.totalCount))
         })
+        .catch((err) => console.log(err))
     }
 }

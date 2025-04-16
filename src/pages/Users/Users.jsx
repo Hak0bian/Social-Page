@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsersThunk } from "../../store/reducers/getUsersReducer";
-import UserCard from "../UserCard/UserCard";
-import Pagination from "../Pagination/Pagination";
+import { UserCard, Pagination } from "../../components"
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import st from "./Users.module.css"
