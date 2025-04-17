@@ -1,7 +1,6 @@
 import { API } from "../../api/api"
 
 const CHANGE_PHOTO = "CHANGE_PHOTO"
-
 const initState = {
     file: {}
 }
@@ -13,15 +12,12 @@ export const changePhotoReducer = (state = initState, action) => {
                 ...state,
                 file: action.payload
             }
-
-
         default :
             return state
     }
 }
 
 const changePhotoAC = (file) => ({type: CHANGE_PHOTO, payload : file})
-
 export const changePhotoThunk = (file) => {
     return(dispatch) => {
         API.changePhoto(file)

@@ -1,10 +1,9 @@
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState } from "react"
-import { getProfileThunk } from "../../store/reducers/profileReducer"
-import { changePhotoThunk } from "../../store/reducers/changePhoto"
-import profileImg from "../../assets/profile.png"
+import { getProfileThunk, changePhotoThunk, logOutThunk } from "../../store/reducers"
 import { EditProfileForm } from "../../components"
+import profileImg from "../../assets/profile.png"
 import st from "./Profile.module.css"
 
 const Profile = () => {
@@ -18,9 +17,14 @@ const Profile = () => {
         dispatch(getProfileThunk(id))
     }, [id])
 
-    const changePhoto = (e) => {
+    const handleChangePhoto = (e) => {
         const file = e.target.files[0]
         dispatch(changePhotoThunk(file))
+    }
+
+    const handleLogOut = () => {
+        dispatch(logOutThunk())
+        localStorage.removeItem("userId")
     }
 
     const showEditForm = () => {
@@ -45,12 +49,12 @@ const Profile = () => {
                 {
                     myId === id && (
                         <div className={st.buttonsDiv}>
-                            <button onClick={showEditForm} className={st.editBtn}>Edit Profile</button>
+                            <button onClick={showEditForm} className={st.editBtn}> Edit Profile </button>
                             <label className={st.uploadBtn}>
                                 Change Photo
-                                <input type="file" onChange={changePhoto} hidden/>
+                                <input type="file" onChange={handleChangePhoto} hidden/>
                             </label>
-                            <button className={st.logOutBtn}>Log Out</button>
+                            <button onClick={handleLogOut} className={st.logOutBtn}> Log Out </button>
                         </div>
                     )
                 }

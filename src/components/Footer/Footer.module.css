@@ -1,0 +1,16 @@
+.footer{
+    background-color: #444;
+}
+
+.footContainer{
+    max-width: 1140px;
+    margin: auto;
+    padding: 40px 0;
+    text-align: center;
+
+    p{
+        color: white;
+        font-size: 20px;
+        padding: 4px 0;
+    }
+}

@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import { useDispatch, useSelector } from "react-redux"
 import validation from "../validation"
 import st from "./EditProfileForm.module.css"
-import { editProfileThunk } from "../../store/reducers/editProfileReducer"
+import { editProfileThunk } from "../../store/reducers"
 
 const EditProfileForm = ({ edit, setEdit }) => {
     const {profile} = useSelector((state) => state.userProfile)

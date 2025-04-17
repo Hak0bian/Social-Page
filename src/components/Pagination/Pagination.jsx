@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUsersThunk, changePageAC } from "../../store/reducers/getUsersReducer";
+import { getUsersThunk, changePageAC } from "../../store/reducers";
 import { HiMiniArrowSmallLeft, HiMiniArrowSmallRight } from "react-icons/hi2";
 import st from "./Pagination.module.css"
 
@@ -15,6 +15,7 @@ const Pagination = ({totalUsersCount, totalPagesCount}) => {
     const handleClick = (index) => {
         setActiveIndex(index);
         dispatch(changePageAC(startPage + index));
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
     
     const ChangeNextPage = () => {
@@ -26,6 +27,7 @@ const Pagination = ({totalUsersCount, totalPagesCount}) => {
                 setStartPage(prev => prev + 1);
                 dispatch(changePageAC(startPage + 5));
             }
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     };
 
@@ -38,6 +40,7 @@ const Pagination = ({totalUsersCount, totalPagesCount}) => {
                 setStartPage(prev => prev - 1);
                 dispatch(changePageAC(startPage - 1));
             }
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     };
 

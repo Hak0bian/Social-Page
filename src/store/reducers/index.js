@@ -1,7 +1,10 @@
-import { getUsersReducer } from "./getUsersReducer"
-import { profileReducer } from "./profileReducer"
-import { authReducer } from "./authReducer"
-import { editProfileReducer } from "./editProfileReducer"
-import { changePhotoReducer } from "./changePhoto"
+import { getUsersReducer, changePageAC, getUsersThunk } from "./getUsersReducer"
+import { profileReducer, getProfileThunk } from "./profileReducer"
+import { authReducer, clearErrorAC, setLoginThunk } from "./authReducer"
+import { editProfileReducer, editProfileThunk } from "./editProfileReducer"
+import { changePhotoReducer, changePhotoThunk } from "./changePhoto"
+import { logOutReducer, logOutThunk } from "./logOutReducer"
 
-export { getUsersReducer, profileReducer, authReducer, editProfileReducer, changePhotoReducer }
+export { getUsersReducer, changePageAC, profileReducer, authReducer, editProfileReducer, changePhotoReducer, logOutReducer,
+    getUsersThunk, getProfileThunk, setLoginThunk, editProfileThunk, changePhotoThunk, logOutThunk, clearErrorAC
+ }

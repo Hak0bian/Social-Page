@@ -3,7 +3,6 @@ import { API } from "../../api/api"
 const USERS = "USERS"
 const CHANGE_PAGE = "CHANGE_PAGE"
 const TOTAL_USERS_COUNT = "TOTAL_USERS_COUNT"
-
 const initState = {
     users : [],
     page : 1,

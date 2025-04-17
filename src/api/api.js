@@ -4,7 +4,7 @@ const instance = axios.create({
     baseURL: "/api/api/1.0",
     withCredentials: true,
     headers: {
-        'API-KEY': '827e614f-2385-4059-aeaa-c31d3557fb33'
+        'API-KEY': '4ccf7727-db8a-4518-a4f6-776d1dea0ac8'
     }
 })
 
@@ -16,9 +16,13 @@ export const API = {
     getProfile(userId){
         return instance.get(`profile/${userId}`)
     },
-
+    
     setLogin(email, password){
         return instance.post(`/auth/login`, {email, password})
+    },
+
+    logOut(){
+        return instance.delete(`/auth/login`)
     },
 
     editProfile(values){

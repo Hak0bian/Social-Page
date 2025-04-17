@@ -1,3 +1,7 @@
+.loginSec{
+    min-height: 80vh;
+}
+
 .loginDiv{
     border: 1px solid ;
     max-width: 500px;
@@ -36,5 +40,11 @@
         &:hover{
             background-color: wheat;
         }
+    }
+
+    .errorMsg{
+        font-size: 14px;
+        color: red;
+        text-align: left;
     }
 }
