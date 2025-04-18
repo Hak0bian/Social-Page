@@ -40,7 +40,7 @@ export const setLoginThunk = (email, password) => {
     return (dispatch) => {
         API.setLogin(email, password)
             .then((res) => {
-                if (res?.resultCode === 0) {
+                if (res?.data?.resultCode === 0) {
                     dispatch(setLoginAC(res?.data?.data?.userId));
                 } else {
                     dispatch(errorMessageAC(res?.data?.fieldsErrors));
@@ -48,7 +48,7 @@ export const setLoginThunk = (email, password) => {
             })
             .catch((err) => {
                 dispatch(errorMessageAC("Something went wrong!"));
-                console.log("Unexpected error:", err);
+                console.error(err);
             });
     };
 };

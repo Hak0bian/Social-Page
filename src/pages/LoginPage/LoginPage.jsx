@@ -18,7 +18,6 @@ const LoginPage = () => {
     const handleFieldChange = (e, handleChange) => {
         handleChange(e); 
         const { name, value } = e.target;
-        console.log(name, value);
         
         if (value.trim() !== "") {
             dispatch(clearErrorAC(name));
@@ -41,7 +40,7 @@ const LoginPage = () => {
                             />
                             { emailError && <p className={st.errorMsg}> {emailError.error} </p> }
 
-                            <Field name="password" placeholder="Password"
+                            <Field name="password" placeholder="Password" type="password"
                                 onChange={(e) => handleFieldChange(e, handleChange)}
                             />
                             { passwordError && <p className={st.errorMsg}> {passwordError.error} </p> }

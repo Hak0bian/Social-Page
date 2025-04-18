@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getProfileThunk, changePhotoThunk, logOutThunk } from "../../store/reducers"
-import { EditProfileForm } from "../../components"
+import { useParams } from "react-router-dom"
+import { getProfileThunk, getStatusThunk, changePhotoThunk, logOutThunk } from "../../store/reducers"
+import { EditProfileForm, ChangeStatus } from "../../components"
+import { BiSolidEditAlt } from "react-icons/bi";
+import { LuUserPen } from "react-icons/lu";
+import { MdOutlineAddAPhoto } from "react-icons/md";
+import { TbLogout } from "react-icons/tb";
 import profileImg from "../../assets/profile.png"
 import st from "./Profile.module.css"
 
 const Profile = () => {
     const {id} = useParams()
-    const {profile} = useSelector((state) => state.userProfile)
-    const [edit, setEdit] = useState(false)
+    const {profile, userStatus} = useSelector((state) => state.userProfile)
+    const [editProfile, setEditProfile] = useState(false)
+    const [editStatus, setEditStatus] = useState(false)
     const myId = localStorage.getItem("userId")
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getProfileThunk(id))
+        dispatch(getStatusThunk(id))
     }, [id])
 
     const handleChangePhoto = (e) => {
@@ -28,15 +34,24 @@ const Profile = () => {
     }
 
     const showEditForm = () => {
-        setEdit(!edit)
+        setEditProfile(!editProfile)
     }
-
+    
 
     return (
         <section className={st.myProfile}>
             <div className={st.profileDiv}>
                 <img src={profile?.photos?.large ? profile?.photos?.large : profileImg} />
                 <h2>{profile?.fullName}</h2>
+                {
+                    editStatus
+                    ?   <ChangeStatus userStatus={userStatus} setEditStatus={setEditStatus}/>
+                    :   <div className={st.changeDiv}>
+                            <h4>{userStatus ? userStatus : "No Status"}</h4>
+                            <BiSolidEditAlt onClick={() => setEditStatus(true)} className={st.editStatus}/>
+                        </div>
+                }
+
                 <p>{profile?.aboutMe ? profile?.aboutMe : ""}</p>
                 <p>{profile?.contacts?.facebook ? profile?.contacts?.facebook : ""}</p>
                 <p>{profile?.contacts?.instagram ? profile?.contacts?.instagram : ""}</p>
@@ -49,12 +64,16 @@ const Profile = () => {
                 {
                     myId === id && (
                         <div className={st.buttonsDiv}>
-                            <button onClick={showEditForm} className={st.editBtn}> Edit Profile </button>
+                            <button onClick={showEditForm} className={st.editBtn}>
+                                <LuUserPen/>
+                            </button>
                             <label className={st.uploadBtn}>
-                                Change Photo
+                                <MdOutlineAddAPhoto/>
                                 <input type="file" onChange={handleChangePhoto} hidden/>
                             </label>
-                            <button onClick={handleLogOut} className={st.logOutBtn}> Log Out </button>
+                            <button onClick={handleLogOut} className={st.logOutBtn}>
+                                <TbLogout/>
+                            </button>
                         </div>
                     )
                 }
@@ -62,7 +81,7 @@ const Profile = () => {
 
             <div>
                 {
-                    edit && <EditProfileForm edit={edit} setEdit={setEdit}/>
+                    editProfile && <EditProfileForm editProfile={editProfile} setEditProfile={setEditProfile}/>
                 }
             </div>
         </section>

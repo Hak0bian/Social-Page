@@ -2,7 +2,8 @@ import Layout from "./Layout/Layout";
 import UserCard from "./UserCard/UserCard";
 import Pagination from "./Pagination/Pagination";
 import EditProfileForm from "./EditProfileForm/EditProfileForm";
+import ChangeStatus from "./ChangeStatus/ChangeStatus";
 import Navigation from "./Navigation/Navigation"
 import Footer from "./Footer/Footer";
 
-export { Layout, UserCard, Pagination, EditProfileForm, Navigation, Footer }
+export { Layout, UserCard, Pagination, EditProfileForm, ChangeStatus, Navigation, Footer }

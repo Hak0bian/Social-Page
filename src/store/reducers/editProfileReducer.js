@@ -21,7 +21,10 @@ const editProfileAC = (data) => ({type: EDIT_PROFILE, payload : data})
 export const editProfileThunk = (values) => {
     return(dispatch) => {
         API.editProfile(values)
-        .then((res) => dispatch(editProfileAC(res.data)))
+        .then((res) => {dispatch(editProfileAC(res.data))
+            console.log(res);
+            
+        })
         .catch((err) => console.log(err))
     }
 }
