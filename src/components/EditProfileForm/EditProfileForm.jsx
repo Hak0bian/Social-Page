@@ -1,17 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { useDispatch, useSelector } from "react-redux"
 import validation from "../validation"
-import st from "./EditProfileForm.module.css"
 import { editProfileThunk } from "../../store/reducers"
+import { IoClose } from "react-icons/io5";
+import st from "./EditProfileForm.module.css"
 
-const EditProfileForm = ({ editProfile, setEditProfile }) => {
+const EditProfileForm = ({ setEditProfile }) => {
     const {profile} = useSelector((state) => state.userProfile)
     const dispatch = useDispatch()
 
     const saveEditedValues = (values, resetForm) => {
         dispatch(editProfileThunk(values))
         resetForm()
-        setEditProfile(!editProfile)
+        setEditProfile(false)
     }
 
     return (
@@ -40,6 +41,7 @@ const EditProfileForm = ({ editProfile, setEditProfile }) => {
             >
 
                 <Form className={st.form}>
+                    <button onClick={() => setEditProfile(false)} className={st.close}> <IoClose/> </button>
                     <div>
                         <label>
                             <Field name="fullName" placeholder="FullName" />

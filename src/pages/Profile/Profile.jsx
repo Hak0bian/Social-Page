@@ -32,10 +32,6 @@ const Profile = () => {
         dispatch(logOutThunk())
         localStorage.removeItem("userId")
     }
-
-    const showEditForm = () => {
-        setEditProfile(!editProfile)
-    }
     
 
     return (
@@ -44,12 +40,15 @@ const Profile = () => {
                 <img src={profile?.photos?.large ? profile?.photos?.large : profileImg} />
                 <h2>{profile?.fullName}</h2>
                 {
-                    editStatus
-                    ?   <ChangeStatus userStatus={userStatus} setEditStatus={setEditStatus}/>
-                    :   <div className={st.changeDiv}>
-                            <h4>{userStatus ? userStatus : "No Status"}</h4>
-                            <BiSolidEditAlt onClick={() => setEditStatus(true)} className={st.editStatus}/>
-                        </div>
+                    myId === id 
+                    ?   editStatus
+                        ?   <ChangeStatus userStatus={userStatus} setEditStatus={setEditStatus}/>
+                        :   <div className={st.changeDiv}>
+                                <h4>{userStatus ? userStatus : "No Status"}</h4>
+                                <BiSolidEditAlt onClick={() => setEditStatus(true)} className={st.editStatus}/>
+                            </div>
+                    
+                    :   <h4>{userStatus ? userStatus : "No Status"}</h4>
                 }
 
                 <p>{profile?.aboutMe ? profile?.aboutMe : ""}</p>
@@ -64,7 +63,7 @@ const Profile = () => {
                 {
                     myId === id && (
                         <div className={st.buttonsDiv}>
-                            <button onClick={showEditForm} className={st.editBtn}>
+                            <button onClick={() => setEditProfile(true)} className={st.editBtn}>
                                 <LuUserPen/>
                             </button>
                             <label className={st.uploadBtn}>
@@ -81,7 +80,7 @@ const Profile = () => {
 
             <div>
                 {
-                    editProfile && <EditProfileForm editProfile={editProfile} setEditProfile={setEditProfile}/>
+                    editProfile && <EditProfileForm setEditProfile={setEditProfile}/>
                 }
             </div>
         </section>

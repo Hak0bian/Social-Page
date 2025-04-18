@@ -24,19 +24,20 @@ const Users = () => {
     return (
         <section>
             {loading ? (
-                <div className={st.usersContainer}>
-                    {[...Array(20)].map((_, ind) => (
-                        <div key={ind} className={st.userDivSkeleton}>
-                            <Skeleton  className={st.imgSkeleton} />
-                            <Skeleton  className={st.titleSkeleton} />
-                            <Skeleton  className={st.btnSkeleton} />
+                <div className={st.skeletonContainer}>
+                    {[...Array(10)].map((_, ind) => (
+                        <div key={ind} className={st.skeletonCard}>
+                            <div className={st.skeletonProfile}>
+                                <Skeleton  className={st.skeletonImg} />
+                                <Skeleton  className={st.skeletonText} />
+                            </div>
+                            <Skeleton  className={st.skeletonBtn} />
                         </div>
                     ))}
                 </div>
             ) : (
                 <UserCard users={users} />
             )}
-
 
             {loading ? (
                 <div className={st.buttonsDivSkeleton}>

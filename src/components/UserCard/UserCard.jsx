@@ -2,6 +2,7 @@ import React from 'react'
 import profileImg from "../../assets/profile.png"
 import st from "./UserCard.module.css"
 import { NavLink } from 'react-router-dom'
+import {FollowButton} from '../index'
 
 const UserCard = ({users}) => {
     return (
@@ -9,12 +10,14 @@ const UserCard = ({users}) => {
             {
                 users?.map((user) => {
                     return (
-                        <div key={user.id} className={st.userDiv}>
+                        <div key={user?.id} className={st.userDiv}>
                             <NavLink to={`/profile/${user?.id}`}>
-                                <img src={user?.photos?.large ? user?.photos?.large : profileImg} />
-                                <h3>{user.name}</h3>
+                                <div className={st.profileDiv}>
+                                    <img src={user?.photos?.large ? user?.photos?.large : profileImg} />
+                                    <h3>{user.name}</h3>
+                                </div>
                             </NavLink>
-                            <button className={st.flw}>Follow</button>
+                            <FollowButton/>
                         </div>
                     )
                 })

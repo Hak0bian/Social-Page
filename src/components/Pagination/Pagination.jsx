@@ -8,7 +8,7 @@ const Pagination = ({totalUsersCount, totalPagesCount}) => {
     const dispatch = useDispatch();
     const pagesCount = Math.ceil(totalUsersCount / totalPagesCount);
 
-    const [startPage, setStartPage] = useState(270);
+    const [startPage, setStartPage] = useState(1);
     const [activeIndex, setActiveIndex] = useState(0); 
     const currentPage = startPage + activeIndex;
 

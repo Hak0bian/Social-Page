@@ -1,54 +1,56 @@
-.usersContainer{
-    max-width: 1140px;
+.skeletonContainer {
+    max-width: 1040px;
     margin: auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    gap: 20px;
     padding: 20px 0;
 }
-
-.userDivSkeleton{
+  
+.skeletonCard {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-    padding: 8px;
-    border: 1px solid gray;
-    background-color: burlywood;
-    box-shadow: 0 0 8px #555;
+    border-radius: 16px;
+    padding: 0 12px;
+    margin: 12px 0;
+    background-color: #e0e0e0;
 }
+
+.skeletonProfile{
+    width: 840px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+  
+.skeletonImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+  
+.skeletonText {
+    width: 200px;
+    height: 24px;
+    border-radius: 4px;
+}
+  
+.skeletonBtn {
+    width: 180px;
+    height: 40px;
+    border-radius: 8px;
+}
+
 
 .buttonsDivSkeleton{
     display: flex;
     justify-content: center;
     border-top: 1px solid gray;
     gap: 8px;
-    padding: 16px 0;
-
-    button{
-        box-shadow: 0 0 4px gray;
-    }
-}
-
-.imgSkeleton{
-    width: 194px;
-    height: 190px;
-}
-
-.titleSkeleton{
-    width: 140px;
-    height: 24px;
-    margin: 8px;
-}
-
-.btnSkeleton{
-    width: 194px;
-    height: 36px;
+    padding: 24px 0;
 }
 
 .pageBtnSkeleton{
     width: 40px;
     height: 40px;
+    background-color: #e0e0e0;
 }
