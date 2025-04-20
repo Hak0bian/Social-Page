@@ -17,8 +17,8 @@ export const API = {
         return instance.get(`profile/${userId}`)
     },
     
-    setLogin(email, password){
-        return instance.post(`/auth/login`, {email, password})
+    setLogin(email, password, captcha){
+        return instance.post(`/auth/login`, {email, password, captcha})
     },
 
     logOut(){
@@ -53,5 +53,9 @@ export const API = {
 
     deleteFollow(userId){
         return instance.get(`/follow/${userId}`)
+    },
+
+    getCaptcha(){
+        return instance.get(`/security/get-captcha-url`)
     }
 }

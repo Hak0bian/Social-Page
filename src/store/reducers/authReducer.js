@@ -3,10 +3,12 @@ import { API } from "../../api/api"
 const SET_LOGIN = "SET_LOGIN"
 const ERROR_MESSAGE = "ERROR_MESSAGE";
 const CLEAR_ERROR = "CLEAR_ERROR";
+const CAPTCHA = "CAPTCHA"
 
 const initState = {
     userId : null,
     errorMessages: [],
+    captcha: {}
 }
 
 export const authReducer = (state = initState, action) => {
@@ -15,7 +17,7 @@ export const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 userId: action.payload,
-                errorMessages: []
+                errorMessages: [],
             }
         case ERROR_MESSAGE : 
             return {
@@ -25,7 +27,12 @@ export const authReducer = (state = initState, action) => {
         case CLEAR_ERROR:
             return {
                 ...state,
-                errorMessages: state.errorMessages.filter(err => err.field !== action.payload)
+                errorMessages: state?.errorMessages?.filter(err => err.field !== action.payload)
+            }
+        case CAPTCHA : 
+            return {
+                ...state,
+                captcha: action.payload,
             }
         default :
             return state
@@ -35,20 +42,27 @@ export const authReducer = (state = initState, action) => {
 const setLoginAC = (id) => ({ type: SET_LOGIN, payload : id })
 const errorMessageAC = (message) => ({ type: ERROR_MESSAGE, payload: message })
 export const clearErrorAC = (field) => ({ type: CLEAR_ERROR, payload: field });
+export const getCaptchaAC = (data) => ({ type: CAPTCHA, payload: data });
 
-export const setLoginThunk = (email, password) => {
+export const setLoginThunk = (email, password, captcha) => {
     return (dispatch) => {
-        API.setLogin(email, password)
-            .then((res) => {
-                if (res?.data?.resultCode === 0) {
-                    dispatch(setLoginAC(res?.data?.data?.userId));
-                } else {
-                    dispatch(errorMessageAC(res?.data?.fieldsErrors));
+        API.setLogin(email, password, captcha)
+        .then((res) => {
+            if (res?.data?.resultCode === 0) {
+                dispatch(setLoginAC(res?.data?.data?.userId));
+            } else {
+                if (res?.data?.resultCode === 10){
+                    dispatch(getCaptchaThunk());
                 }
-            })
-            .catch((err) => {
-                dispatch(errorMessageAC("Something went wrong!"));
-                console.error(err);
-            });
+                dispatch(errorMessageAC(res?.data?.fieldsErrors || [])); 
+            }
+        })
     };
 };
+
+export const getCaptchaThunk = () => {
+    return (dispatch) => {
+        API.getCaptcha()
+        .then((res) => dispatch(getCaptchaAC(res?.data)))
+    }
+}
