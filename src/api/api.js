@@ -57,5 +57,9 @@ export const API = {
 
     getCaptcha(){
         return instance.get(`/security/get-captcha-url`)
+    },
+
+    searchUser(userName){
+        return instance.get(`/users?term=${userName}`)
     }
 }

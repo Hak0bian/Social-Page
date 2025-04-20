@@ -16,7 +16,7 @@ const FollowButton = ({ userId, UserFollowed }) => {
     }, [UserFollowed]);
   
     return (
-        <button onClick={handleFollowing} className={st.flw}>
+        <button onClick={handleFollowing} className={st.followBtn}>
             { isFollowed ? "Unfollow" : "Follow" }
         </button>
     );

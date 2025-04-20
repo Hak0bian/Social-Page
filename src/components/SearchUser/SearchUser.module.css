@@ -1,0 +1,14 @@
+.searchDiv{
+    position: relative;
+}
+
+.searchInput{
+    width: 440px;
+    height: 32px;
+    background-color: wheat;
+    border: 1px solid black;
+    outline: none;
+    padding: 0 8px;
+    margin: 8px 0;
+}
+
