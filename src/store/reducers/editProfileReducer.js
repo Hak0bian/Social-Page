@@ -23,7 +23,7 @@ export const editProfileThunk = (values) => {
         API.editProfile(values)
         .then((res) => {dispatch(editProfileAC(res.data))
             console.log(res);
-            
+    
         })
         .catch((err) => console.log(err))
     }

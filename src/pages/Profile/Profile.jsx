@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getProfileThunk, getStatusThunk, changePhotoThunk, logOutThunk } from "../../store/reducers"
-import { EditProfileForm, ChangeStatus } from "../../components"
+import { EditProfileForm, ChangeStatus, FollowButton } from "../../components"
 import { BiSolidEditAlt } from "react-icons/bi";
 import { LuUserPen } from "react-icons/lu";
 import { MdOutlineAddAPhoto } from "react-icons/md";
@@ -18,11 +18,6 @@ const Profile = () => {
     const myId = localStorage.getItem("userId")
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getProfileThunk(id))
-        dispatch(getStatusThunk(id))
-    }, [id])
-
     const handleChangePhoto = (e) => {
         const file = e.target.files[0]
         dispatch(changePhotoThunk(file))
@@ -32,6 +27,11 @@ const Profile = () => {
         dispatch(logOutThunk())
         localStorage.removeItem("userId")
     }
+
+    useEffect(() => {
+        dispatch(getProfileThunk(id))
+        dispatch(getStatusThunk(id))
+    }, [id])
     
 
     return (
@@ -44,11 +44,14 @@ const Profile = () => {
                     ?   editStatus
                         ?   <ChangeStatus userStatus={userStatus} setEditStatus={setEditStatus}/>
                         :   <div className={st.changeDiv}>
-                                <h4>{userStatus ? userStatus : "No Status"}</h4>
-                                <BiSolidEditAlt onClick={() => setEditStatus(true)} className={st.editStatus}/>
+                                    <h4>{userStatus ? userStatus : "No Status"}</h4>
+                                    <BiSolidEditAlt onClick={() => setEditStatus(true)} className={st.editStatus}/>
                             </div>
                     
-                    :   <h4>{userStatus ? userStatus : "No Status"}</h4>
+                    :   <div>
+                            <h4>{userStatus ? userStatus : "No Status"}</h4>
+                            <FollowButton userId={id} UserFollowed={profile?.userId}/>
+                        </div>
                 }
 
                 <p>{profile?.aboutMe ? profile?.aboutMe : ""}</p>

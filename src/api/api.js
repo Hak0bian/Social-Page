@@ -41,5 +41,17 @@ export const API = {
 
     setStatus(newStatus){
         return instance.put(`/profile/status`, {status: newStatus})
+    },
+
+    setFollow(userId){
+        return instance.post(`/follow/${userId}`)
+    },
+
+    checkFollow(userId){
+        return instance.get(`/follow/${userId}`)
+    },
+
+    deleteFollow(userId){
+        return instance.get(`/follow/${userId}`)
     }
 }

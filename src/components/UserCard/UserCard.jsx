@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom'
 import {FollowButton} from '../index'
 
 const UserCard = ({users}) => {
+    const myId = localStorage.getItem("userId")
+
     return (
         <div className={st.usersContainer}>
             {
@@ -14,10 +16,12 @@ const UserCard = ({users}) => {
                             <NavLink to={`/profile/${user?.id}`}>
                                 <div className={st.profileDiv}>
                                     <img src={user?.photos?.large ? user?.photos?.large : profileImg} />
-                                    <h3>{user.name}</h3>
+                                    <h3>{user?.name}</h3>
                                 </div>
                             </NavLink>
-                            <FollowButton/>
+                            {
+                                Number(myId) !== user?.id && <FollowButton userId={user?.id} UserFollowed={user.followed}/>
+                            }
                         </div>
                     )
                 })

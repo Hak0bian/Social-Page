@@ -1,9 +1,25 @@
+import { useDispatch } from "react-redux"
+import { setFollowThunk } from "../../store/reducers"
 import st from "./FollowButton.module.css"
+import { useEffect, useState } from "react"
 
-const FollowButton = () => {
+const FollowButton = ({ userId, UserFollowed }) => {
+    const [isFollowed, setIsFollowed] = useState(UserFollowed);
+    const dispatch = useDispatch();
+  
+    const handleFollowing = () => {
+        dispatch(setFollowThunk(userId, setIsFollowed))
+    };
+
+    useEffect(() => {
+        setIsFollowed(UserFollowed);
+    }, [UserFollowed]);
+  
     return (
-        <button className={st.flw}>Follow</button>
-    )
-}
-
-export default FollowButton
+        <button onClick={handleFollowing} className={st.flw}>
+            { isFollowed ? "Unfollow" : "Follow" }
+        </button>
+    );
+  };
+  
+  export default FollowButton;

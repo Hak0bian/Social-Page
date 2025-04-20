@@ -4,7 +4,9 @@ import { authReducer, clearErrorAC, setLoginThunk } from "./authReducer"
 import { editProfileReducer, editProfileThunk } from "./editProfileReducer"
 import { changePhotoReducer, changePhotoThunk } from "./changePhoto"
 import { logOutReducer, logOutThunk } from "./logOutReducer"
+import { setFollowThunk } from "./followReducer"
 
-export { getUsersReducer, changePageAC, profileReducer, authReducer, editProfileReducer, changePhotoReducer, logOutReducer,
-    getUsersThunk, getProfileThunk, getStatusThunk, setStatusThunk, setLoginThunk, editProfileThunk, changePhotoThunk, logOutThunk, clearErrorAC
- }
+export { getUsersReducer, changePageAC, profileReducer, authReducer, editProfileReducer, changePhotoReducer, 
+    logOutReducer, getUsersThunk, getProfileThunk, getStatusThunk, setStatusThunk, setLoginThunk, 
+    editProfileThunk, changePhotoThunk, logOutThunk, clearErrorAC, setFollowThunk
+}

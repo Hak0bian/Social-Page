@@ -2,7 +2,6 @@ import { API } from "../../api/api"
 
 const GET_PROFILE = "GET_PROFILE"
 const GET_STATUS = "GET_STATUS"
-const SET_STATUS = "SET_STATUS"
 
 const initState = {
     profile : {},
@@ -21,11 +20,6 @@ export const profileReducer = (state = initState, action) => {
                 ...state,
                 userStatus: action.payload
             }
-        case SET_STATUS :
-            return {
-                ...state,
-                userStatus: action.payload
-            }
         default :
             return state
     }
@@ -33,7 +27,6 @@ export const profileReducer = (state = initState, action) => {
 
 const getProfileAC = (data) => ({type: GET_PROFILE, payload : data})
 const getStatusAC = (status) => ({type: GET_STATUS, payload : status})
-const setStatusAC = (newStatus) => ({type: GET_STATUS, payload : newStatus})
 
 export const getProfileThunk = (userId) => {
     return(dispatch) => {
