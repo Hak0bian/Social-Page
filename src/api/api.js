@@ -17,8 +17,8 @@ export const API = {
         return instance.get(`profile/${userId}`)
     },
     
-    setLogin(email, password, captcha){
-        return instance.post(`/auth/login`, {email, password, captcha})
+    setLogin({ email, password, captcha, rememberMe }){
+        return instance.post(`/auth/login`, { email, password, captcha, rememberMe })
     },
 
     logOut(){

@@ -3,15 +3,28 @@ import { NavLink } from 'react-router-dom'
 import profileImg from "../../assets/profile.png"
 import { clearResultsAC } from "../../store/reducers/searchUserReducer";
 import st from "./SearchedUsersList.module.css"
+import { useEffect, useState } from "react";
 
 const SearchedUsersList = ({inputValue, setInputValue}) => {
     const {searchedUsers} = useSelector((state) => state.search);
+    const [notFound, setNotFound] = useState(false)
     const dispatch = useDispatch();
 
     const handleCleareResults = () => {
         setInputValue("");
         dispatch(clearResultsAC());
     }
+
+    useEffect(() => {
+        setNotFound(false); 
+        const delayNotFound = setTimeout(() => {
+            if (inputValue.trim() && searchedUsers.length === 0) {
+                setNotFound(true);
+            }
+        }, 1000);
+    
+        return () => clearTimeout(delayNotFound);
+    }, [inputValue, searchedUsers]);
 
     return (
         <div>
@@ -28,9 +41,7 @@ const SearchedUsersList = ({inputValue, setInputValue}) => {
                 </ul>
             )}
 
-            {inputValue.trim() && searchedUsers.length === 0 && (
-                <p className={st.notFound}>User Not Found !</p>
-            )}
+            { notFound && <p className={st.notFound}>User Not Found !</p> }
         </div>
     )
 }

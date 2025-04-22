@@ -4,10 +4,12 @@ const SET_LOGIN = "SET_LOGIN"
 const ERROR_MESSAGE = "ERROR_MESSAGE";
 const CLEAR_ERROR = "CLEAR_ERROR";
 const CAPTCHA = "CAPTCHA"
+const GENERAL_ERROR = "GENERAL_ERROR"
 
 const initState = {
     userId : null,
     errorMessages: [],
+    generalError: [],
     captcha: {}
 }
 
@@ -29,6 +31,11 @@ export const authReducer = (state = initState, action) => {
                 ...state,
                 errorMessages: state?.errorMessages?.filter(err => err.field !== action.payload)
             }
+        case GENERAL_ERROR:
+            return {
+                ...state,
+                generalError: action.payload
+            };
         case CAPTCHA : 
             return {
                 ...state,
@@ -43,10 +50,11 @@ const setLoginAC = (id) => ({ type: SET_LOGIN, payload : id })
 const errorMessageAC = (message) => ({ type: ERROR_MESSAGE, payload: message })
 export const clearErrorAC = (field) => ({ type: CLEAR_ERROR, payload: field });
 export const getCaptchaAC = (data) => ({ type: CAPTCHA, payload: data });
+const setGeneralErrorAC = (errorMsg) => ({ type: GENERAL_ERROR, payload: errorMsg });
 
-export const setLoginThunk = (email, password, captcha) => {
+export const setLoginThunk = (values) => {
     return (dispatch) => {
-        API.setLogin(email, password, captcha)
+        API.setLogin(values)
         .then((res) => {
             if (res?.data?.resultCode === 0) {
                 dispatch(setLoginAC(res?.data?.data?.userId));
@@ -54,7 +62,13 @@ export const setLoginThunk = (email, password, captcha) => {
                 if (res?.data?.resultCode === 10){
                     dispatch(getCaptchaThunk());
                 }
-                dispatch(errorMessageAC(res?.data?.fieldsErrors || [])); 
+                if (res?.data?.fieldsErrors.length > 0) {
+                    dispatch(errorMessageAC(res?.data?.fieldsErrors));
+                    dispatch(setGeneralErrorAC(null));
+                } else if (res?.data?.messages?.length > 0) {
+                    dispatch(errorMessageAC([])); 
+                    dispatch(setGeneralErrorAC(res?.data?.messages[0]));
+                }
             }
         })
     };

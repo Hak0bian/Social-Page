@@ -15,15 +15,15 @@ const SearchUser = () => {
     }
 
     useEffect(() => {
-        const delay = setTimeout(() => {
+        const delaySearch = setTimeout(() => {
             if (inputValue.trim()) {
                 dispatch(searchUserThunk(inputValue));
             }else{
                 dispatch(clearResultsAC())
             }
-        }, 1000);
+        }, 500);
 
-        return () => clearTimeout(delay);
+        return () => clearTimeout(delaySearch);
     }, [inputValue]);
 
 

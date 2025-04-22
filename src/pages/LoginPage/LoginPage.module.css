@@ -3,7 +3,7 @@
 }
 
 .loginDiv{
-    border: 1px solid ;
+    border: 1px solid black;
     max-width: 500px;
     margin: 40px auto;
     padding: 20px;
@@ -11,7 +11,12 @@
     box-shadow: 0 0 8px gray;
 
     h2{
-        margin-bottom: 12px;
+        margin: 8px 0;
+    }
+
+    .monkey{
+        width: 110px;
+        height: 100px;
     }
 
     input{
@@ -54,7 +59,7 @@
     margin: 4px 0;
 
     .captchaImg{
-        width: 140px;
+        width: 120px;
         font-size: 0;
         border: 1px solid gray;
     }
@@ -63,8 +68,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
         font-size: 18px;
         background-color: wheat;
         border: 1px solid gray;
@@ -75,4 +80,38 @@
             background-color: burlywood;
         }
     }
+
+    .checkboxLabel{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .check{
+        width: 24px;
+        height: 24px;
+        margin: 0;
+    }
+}
+
+
+.passDiv {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    margin: 4px 0;
+    background-color: white;
+    
+    .passField {
+        height: 38px;
+        border: none;
+    }
+}
+
+.eye {
+    font-size: 24px;
+    padding: 4px;
+    cursor: pointer;
 }
