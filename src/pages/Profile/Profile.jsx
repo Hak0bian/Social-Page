@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getProfileThunk, getStatusThunk, changePhotoThunk, logOutThunk } from "../../store/reducers"
-import { EditProfileForm, ChangeStatus, FollowButton } from "../../components"
+import { getProfileThunk, getStatusThunk } from "../../store/reducers"
+import { EditProfileForm, ChangeStatus, FollowButton, ProfileInfo, ProfileButtons } from "../../components"
 import { BiSolidEditAlt } from "react-icons/bi";
-import { LuUserPen } from "react-icons/lu";
-import { MdOutlineAddAPhoto } from "react-icons/md";
-import { TbLogout } from "react-icons/tb";
 import profileImg from "../../assets/profile.png"
 import st from "./Profile.module.css"
 
@@ -17,16 +14,6 @@ const Profile = () => {
     const [editStatus, setEditStatus] = useState(false)
     const myId = localStorage.getItem("userId")
     const dispatch = useDispatch()
-
-    const handleChangePhoto = (e) => {
-        const file = e.target.files[0]
-        dispatch(changePhotoThunk(file))
-    }
-
-    const handleLogOut = () => {
-        dispatch(logOutThunk())
-        localStorage.removeItem("userId")
-    }
 
     useEffect(() => {
         dispatch(getProfileThunk(id))
@@ -54,30 +41,9 @@ const Profile = () => {
                         </div>
                 }
 
-                <p>{profile?.aboutMe ? profile?.aboutMe : ""}</p>
-                <p>{profile?.contacts?.facebook ? profile?.contacts?.facebook : ""}</p>
-                <p>{profile?.contacts?.instagram ? profile?.contacts?.instagram : ""}</p>
-                <p>{profile?.contacts?.twitter ? profile?.contacts?.twitter : ""}</p>
-                <p>{profile?.contacts?.vk ? profile?.contacts?.vk : ""}</p>
-                <p>{profile?.contacts?.mainLink ? profile?.contacts?.mainLink : ""}</p>
-                <p>{profile?.contacts?.github ? profile?.contacts?.github : ""}</p>
-                <p>{profile?.contacts?.youtube ? profile?.contacts?.youtube : ""}</p>
-
-                {
-                    myId === id && (
-                        <div className={st.buttonsDiv}>
-                            <button onClick={() => setEditProfile(true)} className={st.editBtn}>
-                                <LuUserPen/>
-                            </button>
-                            <label className={st.uploadBtn}>
-                                <MdOutlineAddAPhoto/>
-                                <input type="file" onChange={handleChangePhoto} hidden/>
-                            </label>
-                            <button onClick={handleLogOut} className={st.logOutBtn}>
-                                <TbLogout/>
-                            </button>
-                        </div>
-                    )
+                <ProfileInfo profile={profile}/>
+                { 
+                    myId === id && <ProfileButtons setEditProfile={setEditProfile}/> 
                 }
             </div>
 

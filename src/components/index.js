@@ -4,7 +4,9 @@ import Pagination from "./Pagination/Pagination";
 import EditProfileForm from "./EditProfileForm/EditProfileForm";
 import ChangeStatus from "./ChangeStatus/ChangeStatus";
 import FollowButton from "./FollowButton/FollowButton";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfileButtons from "./ProfileButtons/ProfileButtons";
 import Navigation from "./Navigation/Navigation"
 import Footer from "./Footer/Footer";
 
-export { Layout, UserCard, Pagination, EditProfileForm, ChangeStatus, FollowButton, Navigation, Footer }
+export { Layout, UserCard, Pagination, EditProfileForm, ChangeStatus, FollowButton, ProfileInfo, ProfileButtons, Navigation, Footer }

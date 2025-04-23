@@ -3,8 +3,6 @@ import { Formik, Form, Field } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoginThunk, clearErrorAC, getCaptchaThunk } from '../../store/reducers'
 import { LuRefreshCw } from "react-icons/lu";
-import closeEyesImg from "../../assets/close-eyes.png"
-import openEyesImg from "../../assets/open-eyes.png"
 import { IoEyeSharp } from 'react-icons/io5';
 import { FaEyeSlash } from 'react-icons/fa';
 import st from "./LoginPage.module.css"
@@ -49,7 +47,6 @@ const LoginPage = () => {
     return (
         <section className={st.loginSec}>
             <div className={st.loginDiv}>
-                { showPass ? <img src={closeEyesImg} className={st.monkey}/> : <img src={openEyesImg} className={st.monkey}/> }
                 <h2>Log In</h2>
 
                 <Formik
