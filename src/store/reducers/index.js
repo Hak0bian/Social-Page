@@ -6,8 +6,10 @@ import { changePhotoReducer, changePhotoThunk } from "./changePhoto"
 import { logOutReducer, logOutThunk } from "./logOutReducer"
 import { setFollowThunk } from "./followReducer"
 import { searchUserReducer, searchUserThunk } from "./searchUserReducer"
+import { messagesReducer, myMessageThunk, theirMessageThunk, clearMyMessagesAC, clearTheirMessagesAC } from "./messagesReducer"
 
 export { getUsersReducer, changePageAC, getUsersThunk, profileReducer, getProfileThunk, getStatusThunk, setStatusThunk, 
     authReducer, clearErrorAC, setLoginThunk, getCaptchaThunk, editProfileReducer, editProfileThunk,
-    changePhotoReducer, changePhotoThunk, logOutReducer, logOutThunk, setFollowThunk, searchUserReducer, searchUserThunk
+    changePhotoReducer, changePhotoThunk, logOutReducer, logOutThunk, setFollowThunk, searchUserReducer, searchUserThunk,
+    messagesReducer, myMessageThunk, theirMessageThunk, clearMyMessagesAC, clearTheirMessagesAC 
  }

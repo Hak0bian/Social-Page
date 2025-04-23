@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { thunk } from "redux-thunk";
 import { getUsersReducer, profileReducer, authReducer, editProfileReducer, 
-    changePhotoReducer, logOutReducer, searchUserReducer } from "../store/reducers"
+    changePhotoReducer, logOutReducer, searchUserReducer, messagesReducer } from "../store/reducers"
 
 const rootReducer = combineReducers({
     users: getUsersReducer,
@@ -10,7 +10,8 @@ const rootReducer = combineReducers({
     editProfile: editProfileReducer,
     photo: changePhotoReducer,
     logOutProfile: logOutReducer,
-    search: searchUserReducer
+    search: searchUserReducer,
+    messages: messagesReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))

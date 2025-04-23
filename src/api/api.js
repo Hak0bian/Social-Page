@@ -61,5 +61,13 @@ export const API = {
 
     searchUser(userName){
         return instance.get(`/users?term=${userName}`)
+    },
+
+    sendMessage(userId, message){
+        return instance.post(`/dialogs/${userId}/messages`, {body: message})
+    },
+
+    getMessage(userId){
+        return instance.get(`/dialogs/${userId}/messages`)
     }
 }
